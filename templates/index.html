@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for Produto in lista_produto %}
+    <div>
+        <div style="margin: black">
+            {{ Produto.nome }}
+        </div>
+    </div>
+{% endfor %}
+<a href="{% url 'add' %}"><button>Cadastrar</button></a>
+
+</body>
+</html>
