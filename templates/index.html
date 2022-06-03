@@ -1,18 +1,42 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lojinha do Tadeu</title>
+    <link rel="icon" type="image/x-icon" href="{% static '/img/favicon.ico' %}">
+     <link href="{% static 'css/index.css' %}" rel="stylesheet" />
 </head>
 <body>
+<div class="lista">
 {% for Produto in lista_produto %}
-    <div>
-        <div style="margin: black">
+    <div class="produtinho">
+        <div class="nomeProduto">
             {{ Produto.nome }}
+        </div>
+        <div>
+            {{ Produto.quant_estoque }}
+        </div>
+        <div>
+            {{ Produto.preco_unit }}
+        </div>
+            <img class="imagem" src="{{ Produto.imagem }}">
         </div>
     </div>
 {% endfor %}
-<a href="{% url 'add' %}"><button>Cadastrar</button></a>
+</div>
+<form action="adicionar/" method="POST">
+    {% csrf_token %}
+    <label for="nome">Nome: </label>
+    <input id="nome" type="text" name="nome" value="">
+    <label for="quant_estoque">Quantidade em Estoque: </label>
+    <input id="quant_estoque" type="number" name="quant_estoque" value="">
+    <label for="preco_unit">Preço por unidade: </label>
+    <input id="preco_unit" type="number" step=".01" min="0" name="preco_unit" value="">
+    <label for="imagem">Imagem do Produto(Url): </label>
+    <input id="imagem" type="url" name="imagem" value="">
+    <input type="submit" value="OK">
+</form>
 
 </body>
 </html>

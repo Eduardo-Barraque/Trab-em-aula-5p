@@ -19,5 +19,5 @@ class Produto(models.Model):
     nome = models.CharField(max_length=50)
     quant_estoque = models.IntegerField()
     preco_unit = models.DecimalField(decimal_places=2, max_digits= 8)
-    imagem = models.ImageField()
+    imagem = models.URLField(max_length=300)
     ativo = models.BooleanField()

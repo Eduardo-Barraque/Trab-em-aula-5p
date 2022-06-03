@@ -1,0 +1,14 @@
+.produtinho{
+    width: 50vh;
+    height: auto;
+    margin: 1vh;
+    border: black solid 1vh;
+}
+.lista{
+        display: flex;
+    flex-direction: row;
+}
+.imagem{
+    width: 99%;
+}
+.nomeProduto{text-align: center}
