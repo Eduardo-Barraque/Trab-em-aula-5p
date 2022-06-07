@@ -3,6 +3,8 @@
     height: auto;
     margin: 1vh;
     border: black solid 1vh;
+    padding: 1vh;
+    min-width: 250px;
 }
 .lista{
         display: flex;
@@ -11,4 +13,7 @@
 .imagem{
     width: 99%;
 }
-.nomeProduto{text-align: center}
+.nomeProduto{
+    text-align: center;
+    border-bottom: black solid 1vh;
+}
