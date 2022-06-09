@@ -1,0 +1,22 @@
+{% for Produto in lista_produto %}
+    <section class="produtos" id="produto-{{ Produto.id }}">
+        <div class="produtinho">
+            <div class="nomeProduto">
+
+                {{ Produto.nome }}
+                <div>
+                    <button onclick="deletar('{{produto.id}}')">Excluir</button>
+                </div>
+            </div>
+            <p>
+                {{ Produto.quant_estoque }} Unidades em estoque.
+            </p>
+            <div>
+                R${{ Produto.preco_unit }} reais
+            </div>
+            <div>
+                <img class="imagem" src="{{ Produto.imagem }}" alt="Produto listado acima"/>
+            </div>
+        </div>
+    </section>
+{% endfor %}
