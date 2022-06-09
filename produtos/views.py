@@ -1,14 +1,23 @@
 import form as form
 from django.http import request, HttpResponseRedirect
 from django.shortcuts import render
-from .models import Produto,Pedido,PedidoItem
+from .models import Produto, Pedido, PedidoItem
 
 # Create your views here.
 
 
+def redirect_home(request):
+    return HttpResponseRedirect('/home/')
+
+
 def home(request):
+    return render(request, "index.html")
+
+
+def lista_produto(request):
     lista_produto = Produto.objects.all()
-    return render(request, "index.html", {'lista_produto': lista_produto})
+    return render(request, "produto.html", {'lista_produto': lista_produto})
+
 
 def adicionar(request):
     if request.method == "POST":
@@ -20,3 +29,15 @@ def adicionar(request):
         produto.ativo = True
         produto.save()
         return HttpResponseRedirect('/home/')
+
+
+def busca(request):
+    search = request.GET.get('palavra_chave')
+    if search == '':
+        return HttpResponseRedirect('/home/')
+
+    else:
+        resultado_busca = Produto.objects.filter(nome__icontains=search)
+        amazon = []
+        return render(request, "produto.html", {'lista_produto': resultado_busca})
+

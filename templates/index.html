@@ -5,25 +5,22 @@
     <meta charset="UTF-8">
     <title>Lojinha do Tadeu</title>
     <link rel="icon" type="image/x-icon" href="{% static '/img/favicon.ico' %}">
-     <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+
 </head>
 <body>
+<div>
+    <form action="busca/" method="get">
+        <input type="text" type="text" id='search' name="palavra_chave">
+        <input type="submit"/>
+    </form>
+</div>
 <div class="lista">
-{% for Produto in lista_produto %}
-    <div class="produtinho">
-        <div class="nomeProduto">
-            {{ Produto.nome }}
-        </div>
-        <p>
-            {{ Produto.quant_estoque }} Unidades em estoque.
-        </p>
-        <div>
-            {{ Produto.preco_unit }}
-        </div>
-            <img class="imagem" src="{{ Produto.imagem }}">
-        </div>
-    </div>
-{% endfor %}
+<section id="lista_produto">
+        <section class="produtinho">
+            <p>Seus produtos estão carregando ou você não tem nenhum adicionada!</p>
+        </section>
+    </section>
 </div>
 <form action="adicionar/" method="POST">
     {% csrf_token %}
@@ -39,4 +36,25 @@
 </form>
 
 </body>
+<script>
+xhr = new XMLHttpRequest();
+xhr.open("GET", "lista_produto/");
+xhr.send(null);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    document.getElementById("lista_produto").innerHTML = xhr.response;}
+}
+function busca() {
+    palavraChave = document.getElementById("search").value;
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", "/buscar?palavra_chave=" + palavraChave);
+    xhr.send(null);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById("lista_produto").innerHTML = xhr.response;
+        }
+    }
+    return false;
+}
+</script>
 </html>

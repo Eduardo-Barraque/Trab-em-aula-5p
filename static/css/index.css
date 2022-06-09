@@ -12,6 +12,7 @@
 }
 .imagem{
     width: 99%;
+    max-height: 50vh;
 }
 .nomeProduto{
     text-align: center;
